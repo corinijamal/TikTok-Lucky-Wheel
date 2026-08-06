@@ -1,7 +1,9 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
+// استبدل سطر الاستدعاء القديم بهذا السطر:
 const { WebcastPushConnection } = require('tiktok-live-connector');
+
 
 const app = express();
 const server = http.createServer(app);
