@@ -16,10 +16,18 @@ const io = new Server(server, {
 let isJoinOpen = false; 
 let players = []; 
 
-// استبدل 'username' باسم حساب التيك توك الخاص بك بدقة
+// اسم حساب التيك توك الخاص بك
 const tiktokUsername = "a_7_m_d2"; 
 
-const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
+// إنشاء الاتصال بشكل صحيح مع الخيارات الإضافية
+const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
+    processInitialData: false,
+    enableExtendedGiftInfo: false,
+    clientParams: {
+        app_language: "en",
+        device_platform: "web"
+    }
+});
 
 tiktokLiveConnection.connect().then(state => {
     console.info(`Connected to Room ID: ${state.roomId}`);
