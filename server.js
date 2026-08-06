@@ -16,24 +16,34 @@ const io = new Server(server, {
 let isJoinOpen = false; 
 let players = []; 
 
-// اسم حساب التيك توك الخاص بك
 const tiktokUsername = "a_7_m_d2"; 
 
-// إنشاء الاتصال بشكل صحيح مع الخيارات الإضافية
+// إعدادات اتصال تتجاوز أخطاء الفحص الأمني وتستقر مباشرة
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
-    processInitialData: false,
     enableExtendedGiftInfo: false,
-    clientParams: {
-        app_language: "en",
-        device_platform: "web"
+    processInitialData: false,
+    requestOptions: {
+        timeout: 10000
     }
 });
 
+// محاولة الاتصال مع معالجة الاستجابة بأمان تام
 tiktokLiveConnection.connect().then(state => {
     console.info(`Connected to Room ID: ${state.roomId}`);
 }).catch(err => {
-    console.error('Failed to connect to TikTok Live:', err);
+    console.error('Failed to connect to TikTok Live. Retrying in background...', err.message);
 });
+
+// إعادة محاولة الاتصال تلقائياً إذا فشل الاتصال الأول والبث مفتوح
+setInterval(() => {
+    if (!tiktokLiveConnection.isConnected) {
+        tiktokLiveConnection.connect().then(state => {
+            console.info(`Reconnected successfully to Room ID: ${state.roomId}`);
+        }).catch(() => {
+            // صامت لتجنب إزعاج السجلات
+        });
+    }
+}, 15000);
 
 tiktokLiveConnection.on('chat', data => {
     if (isJoinOpen && data.comment.trim() === 'انضم') {
