@@ -17,7 +17,7 @@ let isJoinOpen = false;
 let players = []; 
 
 // استبدل 'username' باسم حساب التيك توك الذي ستقوم بالبث منه
-const tiktokUsername = "username"; 
+const tiktokUsername = "a_7_m_d2"; 
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
 
 tiktokLiveConnection.connect().then(state => {
