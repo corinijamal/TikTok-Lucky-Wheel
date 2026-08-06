@@ -1,7 +1,10 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const { WebcastPushConnection } = require('tiktok-live-connector');
+
+// طريقة استيراد بديلة تضمن توافق المكتبة مع جميع الإصدارات
+const TikTokLiveConnector = require('tiktok-live-connector');
+const WebcastPushConnection = TikTokLiveConnector.WebcastPushConnection || TikTokLiveConnector;
 
 const app = express();
 const server = http.createServer(app);
@@ -17,7 +20,7 @@ let isJoinOpen = false;
 let players = []; 
 
 // استبدل 'username' باسم حساب التيك توك الخاص بك بدقة
-const tiktokUsername = "username"; 
+const tiktokUsername = "a_7_m_d2"; 
 
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
 
