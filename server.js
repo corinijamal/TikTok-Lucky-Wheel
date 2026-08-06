@@ -16,6 +16,12 @@ const io = new Server(server, {
 let isJoinOpen = false; 
 let players = []; 
 
+const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
+    // إضافات اختيارية لتثبيت الاتصال وتجاوز قيود التوقيع المؤقتة
+    processInitialData: false,
+    enableExtendedGiftInfo: true
+});
+
 // استبدل 'username' باسم حساب التيك توك الذي ستقوم بالبث منه
 const tiktokUsername = "a_7_m_d2"; 
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
