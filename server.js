@@ -19,7 +19,7 @@ let isJoinOpen = false;
 let players = []; 
 
 // استبدل 'username' باسم حساب التيك توك الخاص بك (الذي تفتح منه البث حالياً)
-const tiktokUsername = "username"; 
+const tiktokUsername = "a_7_m_d2"; 
 
 // إنشاء اتصال البث مع خيارات تجاوز وتصحيح التوقيع
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
