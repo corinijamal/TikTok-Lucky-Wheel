@@ -1,11 +1,7 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const TikTokLiveConnector = require('tiktok-live-connector');
-
-// حل جذري يتجاوز مشكلة الـ Constructor
-const WebcastPushConnection = TikTokLiveConnector.WebcastPushConnection || (typeof TikTokLiveConnector === 'function' ? TikTokLiveConnector : TikTokLiveConnector.default);
-
+const { WebcastPushConnection } = require('tiktok-live-connector');
 
 const app = express();
 const server = http.createServer(app);
