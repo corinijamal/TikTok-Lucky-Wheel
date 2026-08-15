@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const { WebcastPushConnection } = require('tiktok-live-connector');
+const { TikTokLiveConnection } = require('tiktok-live-connector');
 
 const app = express();
 const server = http.createServer(app);
@@ -23,7 +23,7 @@ let players = [];
 const tiktokUsername = "a_7_m_d2";
 
 // إنشاء اتصال البث
-const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
+const tiktokLiveConnection = new TikTokLiveConnection(tiktokUsername, {
     processInitialData: false,
     enableExtendedGiftInfo: true
 });
