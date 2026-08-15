@@ -25,7 +25,10 @@ const tiktokUsername = "a_7_m_d2";
 // إنشاء اتصال البث
 const tiktokLiveConnection = new TikTokLiveConnection(tiktokUsername, {
     processInitialData: false,
-    enableExtendedGiftInfo: true
+    enableExtendedGiftInfo: true,
+    // مفتاح Eulerstream المجاني - سجّل حساب مجاني في eulerstream.com واحصل عليه
+    // ثم ضعه كمتغير بيئة EULER_API_KEY في إعدادات Render (Environment)
+    signApiKey: process.env.EULER_API_KEY
 });
 
 // دالة الاتصال مع إعادة محاولة تلقائية في حال الفشل
