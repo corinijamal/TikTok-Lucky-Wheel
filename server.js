@@ -1,10 +1,7 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-
-// الطريقة الشاملة والمضمونة لاستيراد المكتبة في أحدث إصداراتها
-const TikTokLiveConnector = require('tiktok-live-connector');
-const WebcastPushConnection = TikTokLiveConnector.WebcastPushConnection || TikTokLiveConnector.default || TikTokLiveConnector;
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+import { WebcastPushConnection } from 'tiktok-live-connector';
 
 const app = express();
 const server = http.createServer(app);
@@ -41,7 +38,7 @@ setInterval(() => {
         tiktokLiveConnection.connect().then(state => {
             console.info(`Reconnected successfully to Room ID: ${state.roomId}`);
         }).catch(() => {
-            // صامت في الخلفية
+            // صامت في الخلفية لتجنب إزعاج السجلات
         });
     }
 }, 15000);
