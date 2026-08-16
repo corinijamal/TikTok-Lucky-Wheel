@@ -1,7 +1,10 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const { WebcastPushConnection } = require('tiktok-live-connector');
+
+// الطريقة الشاملة والمضمونة لاستيراد المكتبة في أحدث إصداراتها
+const TikTokLiveConnector = require('tiktok-live-connector');
+const WebcastPushConnection = TikTokLiveConnector.WebcastPushConnection || TikTokLiveConnector.default || TikTokLiveConnector;
 
 const app = express();
 const server = http.createServer(app);
@@ -16,7 +19,7 @@ const io = new Server(server, {
 let isJoinOpen = false; 
 let players = []; 
 
-// عدنا لاستخدام اسم حسابك بشكل طبيعي
+// اسم حسابك
 const tiktokUsername = "a_7_m_d2"; 
 
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
@@ -33,7 +36,6 @@ tiktokLiveConnection.connect().then(state => {
     console.error('Failed to connect to TikTok Live. Retrying...', err.message);
 });
 
-// إعادة الاتصال التلقائي في حال انقطاع البث أو تأخره
 setInterval(() => {
     if (!tiktokLiveConnection.isConnected) {
         tiktokLiveConnection.connect().then(state => {
