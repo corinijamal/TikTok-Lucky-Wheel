@@ -1,9 +1,10 @@
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
-import TikTokLiveConnector from 'tiktok-live-connector';
+import { createRequire } from 'module';
 
-const { WebcastPushConnection } = TikTokLiveConnector;
+const require = createRequire(import.meta.url);
+const { WebcastPushConnection } = require('tiktok-live-connector');
 
 const app = express();
 const server = http.createServer(app);
