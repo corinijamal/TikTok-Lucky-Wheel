@@ -6,7 +6,6 @@ const { WebcastPushConnection } = require('tiktok-live-connector');
 const app = express();
 const server = http.createServer(app);
 
-// تفعيل CORS لضمان اتصال الواجهة بالخادم
 const io = new Server(server, {
   cors: {
     origin: "*",
@@ -17,30 +16,30 @@ const io = new Server(server, {
 let isJoinOpen = false; 
 let players = []; 
 
-// معرف الغرفة (Room ID) الخاص بك للاتصال المباشر
-const roomId = "7674385695816829704"; 
+// عدنا لاستخدام اسم حسابك بشكل طبيعي
+const tiktokUsername = "a_7_m_d2"; 
 
-const tiktokLiveConnection = new WebcastPushConnection(roomId, {
-    enableExtendedGiftInfo: false,
+const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
     processInitialData: false,
+    enableExtendedGiftInfo: false,
     requestOptions: {
         timeout: 10000
     }
 });
 
 tiktokLiveConnection.connect().then(state => {
-    console.info(`Connected to Room ID: ${state.roomId}`);
+    console.info(`Connected successfully to Room ID: ${state.roomId}`);
 }).catch(err => {
-    console.error('Failed to connect to TikTok Live. Retrying in background...', err.message);
+    console.error('Failed to connect to TikTok Live. Retrying...', err.message);
 });
 
-// إعادة الاتصال التلقائي
+// إعادة الاتصال التلقائي في حال انقطاع البث أو تأخره
 setInterval(() => {
     if (!tiktokLiveConnection.isConnected) {
         tiktokLiveConnection.connect().then(state => {
             console.info(`Reconnected successfully to Room ID: ${state.roomId}`);
         }).catch(() => {
-            // صامت لتجنب إزعاج السجلات
+            // صامت في الخلفية
         });
     }
 }, 15000);
