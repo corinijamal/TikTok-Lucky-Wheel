@@ -1,7 +1,9 @@
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
-import { WebcastPushConnection } from 'tiktok-live-connector';
+import TikTokLiveConnector from 'tiktok-live-connector';
+
+const { WebcastPushConnection } = TikTokLiveConnector;
 
 const app = express();
 const server = http.createServer(app);
@@ -16,7 +18,6 @@ const io = new Server(server, {
 let isJoinOpen = false; 
 let players = []; 
 
-// اسم حسابك
 const tiktokUsername = "a_7_m_d2"; 
 
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
@@ -38,7 +39,7 @@ setInterval(() => {
         tiktokLiveConnection.connect().then(state => {
             console.info(`Reconnected successfully to Room ID: ${state.roomId}`);
         }).catch(() => {
-            // صامت في الخلفية لتجنب إزعاج السجلات
+            // صامت في الخلفية
         });
     }
 }, 15000);
