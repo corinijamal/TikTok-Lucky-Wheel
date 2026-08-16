@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend for TikTok Lucky Wheel",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
