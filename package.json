@@ -1,18 +1,14 @@
 {
-  "name": "tiktok-lucky-wheel-backend",
+  "name": "tiktok-wheel-backend",
   "version": "1.0.0",
-  "description": "Backend for TikTok Lucky Wheel",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "socket.io": "^4.7.2",
-    "tiktok-live-connector": "latest"
-  },
-  "engines": {
-    "node": "22.x"
+    "tiktok-live-connector": "^2.4.3"
   }
 }
