@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: ["https://harmonious-biscotti-8c37b8.netlify.app", "*"], // مهم عشان Netlify
     methods: ["GET", "POST"]
   }
 });
@@ -19,15 +19,14 @@ const io = new Server(server, {
 let isJoinOpen = false;
 let players = [];
 
-// ⚠️ عدّل هذا السطر فقط: ضع اسم مستخدم حسابك في تيك توك بدون علامة @
+// ⚠️ مهم جدا: ضع اسم مستخدم تيك توك تبعك هنا بدون @
 const tiktokUsername = "a_7_m_d2";
 
 // إنشاء اتصال البث
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
     processInitialData: false,
     enableExtendedGiftInfo: true,
-    // لو عندك مشكلة حظر استخدم مفتاح eulerstream
-    // signApiKey: process.env.EULER_API_KEY
+    signApiKey: process.env.EULER_API_KEY // لازم تفعله في Render
 });
 
 function connectToTikTok() {
