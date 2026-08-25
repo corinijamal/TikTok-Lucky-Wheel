@@ -19,7 +19,7 @@ let isJoinOpen = false;
 let players = [];
 
 // ⚠️ حط اليوزر تبعك هنا
-const tiktokUsername = "ضع_يوزرك_هنا";
+const tiktokUsername = "a_7_m_d2";
 
 const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
     processInitialData: false,
