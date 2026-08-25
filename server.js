@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const { WebcastPushConnection } = require('tiktok-live-connector');// مهم الاقواس {}
+const { TikTokLiveConnection } = require('tiktok-live-connector'); // v2: الاسم الجديد للكلاس
 const cors = require('cors');
 
 const app = express();
@@ -19,7 +19,7 @@ let isJoinOpen = false;
 let players = [];
 const tiktokUsername = "a_7_m_d2"; // غيره
 
-const tiktokLiveConnection = new WebcastPushConnection(tiktokUsername, {
+const tiktokLiveConnection = new TikTokLiveConnection(tiktokUsername, {
     processInitialData: false,
     enableExtendedGiftInfo: true,
     signApiKey: process.env.EULER_API_KEY
